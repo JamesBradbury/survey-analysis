@@ -75,7 +75,8 @@ def read_file(file_path: str):
                     answer=answer
                 )
 
-    print(all_question_totals)
-    display_possible_answers(all_answers=possible_responses_per_field)
+    # Mostly there for dev-test/debug
+    # print(all_question_totals)
+    # display_possible_answers(all_answers=possible_responses_per_field)
 
     return all_raw_rows
