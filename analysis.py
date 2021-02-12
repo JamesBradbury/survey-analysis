@@ -1,4 +1,5 @@
 import csv
+from collections import defaultdict
 from typing import Dict, List, Any
 
 
@@ -51,6 +52,23 @@ def get_matching_rows(input_rows: List, filters: List) -> List:
         matching_rows.append(row)
 
     return matching_rows
+
+
+def create_filter_combinations(questions_and_answers: Dict[str, List[str]]) -> Dict:
+    all_filters = dict()
+    all_qa_perms_list = []
+    for question, answer_list in questions_and_answers.items():
+        qa_perms_list = [question + "#" + answer for answer in answer_list]
+        all_qa_perms_list.append(qa_perms_list)
+
+    # Product
+
+    for i, qa_tuple in enumerate(all_qa_perms_list):
+        all_filters[f"f{i}"] = []
+        qa_dict = defaultdict(list)
+        for qa in qa_tuple:
+            question, answer = qa.split("#")
+            qa_dict[question].append(answer)
 
 
 def read_file(file_path: str):
