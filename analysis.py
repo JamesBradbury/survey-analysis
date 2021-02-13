@@ -15,7 +15,7 @@ def display_possible_answers(all_answers: Dict) -> None:
 def remove_several_strings(target: str, remove_list: List = None) -> str:
     result = target
     for str_to_remove in remove_list:
-        result.replace(str_to_remove, "")
+        result = result.replace(str_to_remove, "")
 
     return result
 
@@ -24,7 +24,7 @@ def filter_description_str(filter_dict: Dict, remove_list=None, max_answer_len=1
     filter_desc = []
     if not remove_list:
         remove_list = []
-    for q, a_list in filter_dict.items():
+    for q, a_list in filter_dict[0].items():
         filter_desc.append(f"{remove_several_strings(target=q, remove_list=remove_list)}"
                            f"={a_list[0][:max_answer_len]}")
     return ", ".join(filter_desc)
